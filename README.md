@@ -48,8 +48,8 @@ A modern, robust inventory management system built with NestJS, designed to hand
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/yourusername/inventory-management-system.git
-   cd inventory-management-system
+   git clone https://github.com/YousefMTaha/nest-with-drizzle.git
+   cd nest-with-drizzle
    ```
 
 2. Install dependencies:
