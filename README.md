@@ -61,12 +61,7 @@ A modern, robust inventory management system built with NestJS, designed to hand
 3. Set up environment variables:
    Create a `.env` file in the root directory with the following variables:
    ```
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_USERNAME=postgres
-   DB_PASSWORD=admin
-   DB_DATABASE=inventory_management
-   DB_SYNCHRONIZE=true
+    DB_URL=postgres://postgres:admin@postgres:5432/inventory_management
    ```
 
 ## ▶️ Running the Application
@@ -92,8 +87,12 @@ You can run this application using Docker. This will set up both the application
 - Docker Compose
 
 ### Running with Docker
-
-1. Build and start the containers:
+1. Set up environment variables:
+   Create a `.env` file in the root directory with the following variables:
+   ```
+   DB_URL=postgres://postgres:admin@postgres:5432/inventory_management
+   ```
+2. Build and start the containers:
 
    ```bash
    # For development environment
@@ -103,7 +102,7 @@ You can run this application using Docker. This will set up both the application
    docker-compose -f docker-compose.prod.yml up -d
    ```
 
-2. The application will be available at:
+3. The application will be available at:
    - API: `http://localhost:3000`
    - Swagger Documentation: `http://localhost:3000/swagger`
    - PostgreSQL: `localhost:5432`
