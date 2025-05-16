@@ -4,7 +4,7 @@ import {
   Inject,
   ConflictException,
 } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { and, eq, ne } from 'drizzle-orm';
 import type { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import * as schema from '../db/schema';
 import { CreateBranchDto } from './dtos/create-branch.dto';
@@ -55,6 +55,19 @@ export class InventoryBranchService {
       ...updateBranchDto,
       updatedAt: new Date(),
     } as any;
+
+    if (updateBranchDto.name) {
+      const isExist = await this.db.query.inventoryBranches.findFirst({
+        where: and(
+          eq(schema.inventoryBranches.name, updateBranchDto.name),
+          ne(schema.inventoryBranches.id, id),
+        ),
+      });
+
+      if (isExist) {
+        throw new ConflictException('Name is already exist');
+      }
+    }
 
     const [updatedBranch] = await this.db
       .update(schema.inventoryBranches)
