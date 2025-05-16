@@ -100,10 +100,6 @@ export class SKUService {
       throw new NotFoundException(`SKU with ID "${id}" not found`);
     }
 
-    if (!sku.isActive) {
-      throw new BadRequestException(`SKU already deactivated`);
-    }
-
     return sku;
   }
 
