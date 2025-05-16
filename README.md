@@ -155,7 +155,7 @@ docker-compose -f docker-compose.prod.yml down -v
 The API documentation is available through Swagger UI. After starting the application, visit:
 
 ```
-http://localhost:3001/api
+  http://localhost:3000/swagger
 ```
 
 This will provide an interactive documentation interface where you can:
@@ -165,18 +165,6 @@ This will provide an interactive documentation interface where you can:
 - See request/response schemas
 - View detailed parameter descriptions
 
-## 🧪 Testing
-
-```bash
-# Unit tests
-npm run test
-
-# End-to-end tests
-npm run test:e2e
-
-# Test coverage
-npm run test:cov
-```
 
 ## 📂 Project Structure
 
@@ -190,15 +178,3 @@ src/
 │   └── dtos/           # Data Transfer Objects
 └── main.ts             # Application entry point
 ```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License.
