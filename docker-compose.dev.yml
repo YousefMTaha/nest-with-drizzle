@@ -1,0 +1,30 @@
+services:
+  inventory-app:
+    build: .
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    restart: always
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /app/src
+          ignore:
+            - node_modules/
+            - dist/
+        - action: rebuild
+          path: ./package.json
+    command: [ "npm", "run", "start:dev" ]
+  postgres:
+    container_name: inventory-db
+    image: postgres:17
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=inventory_management

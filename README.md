@@ -1,8 +1,15 @@
 # Inventory Management System
 
-A robust inventory management system built with NestJS, designed to handle SKU (Stock Keeping Unit) and Inventory Branch management efficiently.
+<p align="center">
+  <img src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white" alt="NestJS" />
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+</p>
 
-## Features
+A modern, robust inventory management system built with NestJS, designed to handle SKU (Stock Keeping Unit) and Inventory Branch management efficiently. Using Drizzle ORM for database operations, this system provides a solid foundation for managing inventory across multiple branches.
+
+## ✨ Features
 
 ### SKU Management
 
@@ -18,44 +25,51 @@ A robust inventory management system built with NestJS, designed to handle SKU (
 - Update branch information as needed
 - List all active branches
 
-## Technology Stack
+## 🛠️ Technology Stack
 
 - **Framework**: NestJS
 - **Database**: PostgreSQL
-- **ORM**: TypeORM
+- **ORM**: Drizzle ORM
 - **Additional Libraries**:
   - `bwip-js` for barcode generation
   - `qrcode` for QR code generation
   - `@nestjs/config` for configuration management
+  - `@nestjs/swagger` for API documentation
+  - `nanoid` and `uuid` for unique ID generation
 
-## Prerequisites
+## 📋 Prerequisites
 
 - Node.js (v14 or higher)
 - PostgreSQL (v12 or higher)
 - npm or yarn
 
-## Installation
+## 🚀 Installation
 
 1. Clone the repository
+
+   ```bash
+   git clone https://github.com/yourusername/inventory-management-system.git
+   cd inventory-management-system
+   ```
+
 2. Install dependencies:
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 3. Set up environment variables:
-Create a `.env` file in the root directory with the following variables:
+   Create a `.env` file in the root directory with the following variables:
+   ```
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_USERNAME=postgres
+   DB_PASSWORD=admin
+   DB_DATABASE=inventory_management
+   DB_SYNCHRONIZE=true
+   ```
 
-```makefile
-DB_HOST=localhost
-DB_PORT=5432
-DB_USERNAME=postgres
-DB_PASSWORD=admin
-DB_DATABASE=inventory_management
-DB_SYNCHRONIZE=true
-```
-
-## Running the Application
+## ▶️ Running the Application
 
 ```bash
 # Development mode
@@ -68,7 +82,7 @@ npm run start:dev
 npm run start:prod
 ```
 
-## Docker Setup
+## 🐳 Docker Setup
 
 You can run this application using Docker. This will set up both the application and PostgreSQL database in containers.
 
@@ -81,32 +95,48 @@ You can run this application using Docker. This will set up both the application
 
 1. Build and start the containers:
 
-```bash
-docker-compose up -d
-```
+   ```bash
+   # For development environment
+   docker-compose -f docker-compose.dev.yml up -d
+
+   # For production environment
+   docker-compose -f docker-compose.prod.yml up -d
+   ```
 
 2. The application will be available at:
-   - API: `http://localhost:3001`
-   - Swagger Documentation: `http://localhost:3001/api`
+   - API: `http://localhost:3000`
+   - Swagger Documentation: `http://localhost:3000/swagger`
    - PostgreSQL: `localhost:5432`
 
 ### Docker Commands
 
 ```bash
-# View logs
-docker-compose logs -f
+# View logs (development)
+docker-compose -f docker-compose.dev.yml logs -f
 
-# Stop containers
-docker-compose down
+# View logs (production)
+docker-compose -f docker-compose.prod.yml logs -f
 
-# Rebuild and restart
-docker-compose up -d --build
+# Stop containers (development)
+docker-compose -f docker-compose.dev.yml down
 
-# Remove volumes (will delete database data)
-docker-compose down -v
+# Stop containers (production)
+docker-compose -f docker-compose.prod.yml down
+
+# Rebuild and restart (development)
+docker-compose -f docker-compose.dev.yml up -d --build
+
+# Rebuild and restart (production)
+docker-compose -f docker-compose.prod.yml up -d --build
+
+# Remove volumes (will delete database data) (development)
+docker-compose -f docker-compose.dev.yml down -v
+
+# Remove volumes (will delete database data) (production)
+docker-compose -f docker-compose.prod.yml down -v
 ```
 
-## API Endpoints
+## 📡 API Endpoints
 
 ### SKU Management
 
@@ -121,21 +151,22 @@ docker-compose down -v
 - `GET /inventory-branch/:id` - Get branch details
 - `PUT /inventory-branch/:id` - Update branch information
 
-## API Documentation
+## 📚 API Documentation
 
 The API documentation is available through Swagger UI. After starting the application, visit:
 
-```bash
+```
 http://localhost:3001/api
 ```
 
 This will provide an interactive documentation interface where you can:
+
 - View all available endpoints
 - Test API endpoints directly
 - See request/response schemas
 - View detailed parameter descriptions
 
-## Testing
+## 🧪 Testing
 
 ```bash
 # Unit tests
@@ -148,17 +179,20 @@ npm run test:e2e
 npm run test:cov
 ```
 
-## Project Structure
+## 📂 Project Structure
 
 ```
 src/
-├── config/             # Configuration files
+├── common/             # Common utilities and filters
+├── db/                 # Database configuration and migrations
 ├── inventory-branch/   # Inventory Branch module
-├── sku/               # SKU module
-└── shared/            # Shared utilities and interfaces
+│   └── dtos/           # Data Transfer Objects
+├── sku/                # SKU module
+│   └── dtos/           # Data Transfer Objects
+└── main.ts             # Application entry point
 ```
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -166,6 +200,6 @@ src/
 4. Push to the branch
 5. Create a Pull Request
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License.

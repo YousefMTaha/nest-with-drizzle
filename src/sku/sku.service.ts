@@ -19,21 +19,14 @@ export class SKUService {
   ) {}
 
   private async generateBarcodeData(skuCode: string): Promise<string> {
-    return new Promise((resolve, reject) => {
-      bwipjs.toBuffer(
-        {
-          bcid: 'code128',
-          text: skuCode,
-          scale: 3,
-          height: 10,
-          includetext: true,
-        },
-        (err, png) => {
-          if (err) reject(err);
-          else resolve(`data:image/png;base64,${png.toString('base64')}`);
-        },
-      );
+    const png = await bwipjs.toBuffer({
+      bcid: 'code128',
+      text: skuCode,
+      scale: 3,
+      height: 10,
+      includetext: true,
     });
+    return `data:image/png;base64,${png.toString('base64')}`;
   }
 
   private async generateQRCodeData(skuCode: string): Promise<string> {
@@ -113,4 +106,6 @@ export class SKUService {
 
     return sku;
   }
+
+ 
 }
