@@ -87,12 +87,7 @@ You can run this application using Docker. This will set up both the application
 - Docker Compose
 
 ### Running with Docker
-1. Set up environment variables:
-   Create a `.env` file in the root directory with the following variables:
-   ```
-   DB_URL=postgres://postgres:admin@postgres:5432/inventory_management
-   ```
-2. Build and start the containers:
+1. Build and start the containers:
 
    ```bash
    # For development environment
