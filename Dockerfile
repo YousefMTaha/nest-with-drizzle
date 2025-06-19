@@ -16,4 +16,6 @@ RUN npm run build
 
 EXPOSE 3000
 
+ENV DB_URL=postgres://postgres:admin@postgres:5432/inventory_management
+
 CMD ["npm","start"]
